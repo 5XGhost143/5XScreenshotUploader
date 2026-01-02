@@ -1,0 +1,5 @@
+main.onefile-build/
+main.dist/
+main.build/
+__pycache__
+main.exe
