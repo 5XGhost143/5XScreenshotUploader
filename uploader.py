@@ -20,6 +20,7 @@ class ScreenshotUploader:
         self.icon = None
         self.network_status = True
         self.session = None
+        self.check_interval = 30
     
     def get_image_hash(self, image):
         return hashlib.md5(image.tobytes()).hexdigest()
@@ -120,15 +121,17 @@ class ScreenshotUploader:
     
     def check_network_status(self):
         while self.is_running:
-            time.sleep(120)
+            time.sleep(self.check_interval)
             
             new_status = self.check_network()
             
             if new_status != self.network_status:
                 self.network_status = new_status
                 if not new_status:
+                    self.check_interval = 5
                     self.notify("No Connection", "No internet connection")
                 else:
+                    self.check_interval = 30
                     self.notify("Connection Restored", "Internet connection restored")
     
     def monitor_clipboard(self):

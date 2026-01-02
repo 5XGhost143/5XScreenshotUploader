@@ -1,6 +1,8 @@
 import pystray
 from pystray import MenuItem as item
 from PIL import Image, ImageDraw
+import sys
+import os
 
 class TrayIcon:
     def __init__(self, uploader):
@@ -29,6 +31,7 @@ class TrayIcon:
         self.uploader.stop_monitoring()
         if self.icon:
             self.icon.stop()
+        os._exit(0)
     
     def run(self):
         icon_image = self.create_python_icon()
