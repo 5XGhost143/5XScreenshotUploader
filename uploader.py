@@ -81,7 +81,7 @@ class ScreenshotUploader:
             url = f"{self.config['protocol']}://{self.config['domain']}:{self.config['port']}/v1/api/upload"
             
             files = {'file': (filename, img_byte_arr, 'image/png')}
-            data = {'is_private': 'false'}
+            data = {'is_private': 'true'}
             headers = {'Authorization': f'Bearer {self.token}'}
             
             response = self.get_session().post(url, files=files, data=data, headers=headers, timeout=30)
